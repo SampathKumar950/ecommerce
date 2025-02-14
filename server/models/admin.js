@@ -7,6 +7,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
     enum: ['manageUsers', 'manageVendors', 'manageOrders', 'viewReports'],
   }],
+  requests:[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

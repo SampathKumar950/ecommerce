@@ -1,11 +1,12 @@
+import { MongoOIDCError } from "mongodb";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
   },
+  profilePicture:{type:String},
   role: { type: String, enum: ['user', 'vendor', 'admin'], default: 'user' },
   email: {
     type: String,
@@ -13,19 +14,26 @@ const userSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
   },
+  image:{
+    type:String,
+    default:'https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA0L2pvYjY4Ni0yODUtcC5wbmc.png',
+  },
   password: {
     type: String,
     required: true,
   },
   address: {
     type: String,
-    required: true,
   },
-  phoneNumber: {
+  phone: {
     type: String,
     required: true,
   },
   wishlist: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product',
+  }],
+  cart: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
   }],
@@ -37,6 +45,8 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Review',
   }],
+  verificationCode:{type:String},
+  verified: {type:Boolean, default:false},
 //   paymentMethods: [{
 //     type: String,
 //     details: String, 

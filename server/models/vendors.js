@@ -2,8 +2,10 @@ import mongoose from 'mongoose';
 
 const vendorSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, 
-  role: { type: String, enum: ['vendor'], default: 'vendor' },
+  role: { type: String, enum: ['user','vendor','withdraw','inactive'], default: 'user' },
   businessName: { type: String, required: true },
+  address: {type: String, default:'india'},
+  image: {type: String, default:'https://img.freepik.com/premium-vector/2d-shop-vector_1261583-2923.jpg'},
   products: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
