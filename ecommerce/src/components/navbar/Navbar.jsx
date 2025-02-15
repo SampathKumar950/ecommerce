@@ -74,7 +74,7 @@ const Navbar = ({isHomePage}) => {
 
         {/* Desktop Navbar Links (visible only on large screens) */}
         <div className="hidden lg:flex space-x-6 items-center">
-          <button onClick={()=>navigate('/home')} className="hover:text-blue-600"><FontAwesomeIcon icon={faHome} /><br /> Home</button>
+          <button onClick={()=>navigate('/')} className="hover:text-blue-600"><FontAwesomeIcon icon={faHome} /><br /> Home</button>
           {register ==0 && <>
           <button onClick={()=>navigate('/register')} className=" hover:text-blue-600"><FontAwesomeIcon icon={faUser} /><br /> Register</button>
           <button onClick={()=>navigate('/login')} className=" hover:text-blue-600"><FontAwesomeIcon icon={faSignIn} /><br /> LogIn</button>
@@ -94,7 +94,7 @@ const Navbar = ({isHomePage}) => {
           <div className="bg-white p-6 rounded-lg shadow-lg w-1/2 max-w-lg">
             <h3 className="text-xl mb-4">Do You Want To Logout From Ushop ? </h3>
             <div className ="">
-                <button className="bg-gray-800 text-white rounded-lg p-2 mr-5" onClick={()=>{setRegister(0); localStorage.removeItem('authtoken'); setLogout(false); navigate('/home'); return;}}>
+                <button className="bg-gray-800 text-white rounded-lg p-2 mr-5" onClick={()=>{setRegister(0); localStorage.removeItem('authtoken'); setLogout(false); navigate('/'); return;}}>
                     yes
                 </button>
                 <button className="bg-gray-800 text-white rounded-lg p-2" onClick={()=>setLogout(false)}
@@ -131,7 +131,7 @@ const Navbar = ({isHomePage}) => {
       {/* Mobile Navbar Links (Conditional Rendering) */}
       {isMobileMenuOpen && (
         <div className="lg:hidden p-4 space-y-2 mt-2">
-          <button onClick={()=>navigate('/home')} className="block "> Home</button>
+          <button onClick={()=>navigate('/')} className="block "> Home</button>
           {register ==0 && <>
           <button onClick={()=>navigate('/register')} className="block "> Register</button>
           <button onClick={()=>navigate('/login')} className="block "> LogIn</button>
