@@ -44,7 +44,9 @@ router.get('/getProduct',async(req,res)=>{
 });
 
 router.get('/search', async (req, res) => {
-  const { category, minPrice, maxPrice, discount, rating, availability, name } = req.query;
+  const { category , discount, rating, availability, name } = req.query;
+  const minPrice = req.query.minRange;
+  const maxPrice = req.query.maxRange;
   console.log(minPrice, maxPrice, category);
 
   // Start building the query filter

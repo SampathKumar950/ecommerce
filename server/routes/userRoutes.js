@@ -10,7 +10,6 @@ import Review from "../models/reviews.js";
 import Order from "../models/orders.js";
 import { sendVerificationCode,welcomeEmailCode} from "../middlewares/emailConfig.js";
 
-
 const router = express.Router();
 
 // USER ROUTES CREATED TILL ARE :- REGISTER,LOGIN,GET USER
@@ -159,7 +158,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/flogin",async(req,res)=>{
-  const { username, email, phone} = req.body;
+  const { username, email} = req.body;
     try{
 
       const userExists = await User.findOne({ email });
@@ -167,14 +166,14 @@ router.post("/flogin",async(req,res)=>{
       // Generate JWT token
       const token = jwt.sign({ userId: userExists._id }, "jwt-secret-key", { expiresIn: "2d" });
   
-      res.json({ token, userId: user._id, message: "Success", role: user.role});
+      return res.json({ token, userId: userExists._id, message: "Success", role: user.role});
       }
        // Encrypt password
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash((username+"/;/"+phone), salt);
+    const hashedPassword = await bcrypt.hash(("///--/////"), salt);
    
     // Create new user
-    const user = new User({ username, email, password: hashedPassword, phone});
+    const user = new User({ username, email, password: hashedPassword});
     await user.save();
 
     await welcomeEmailCode(user.email,user.name);
@@ -186,6 +185,38 @@ router.post("/flogin",async(req,res)=>{
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "error at register" , error});
+  }
+});
+router.post("/google",async(req,res)=>{
+  const { userData} = req.body;
+  const username = userData.name;
+  const email = userData.email;
+    try{
+
+      const userExists = await User.findOne({ email });
+      if(userExists){
+      // Generate JWT token
+      const token = jwt.sign({ userId: userExists._id }, "jwt-secret-key", { expiresIn: "4d" });
+  
+      return res.json({ token, userId: userExists._id, message: "Success", role: userExists.role});
+      }
+       // Encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(("///---///"), salt);
+   
+    // Create new user
+    const user = new User({ username, email, password: hashedPassword});
+    await user.save();
+
+    await welcomeEmailCode(user.email,user.name);
+
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, "jwt-secret-key", { expiresIn: "2d" });
+  
+    return res.json({ token, userId: user._id, message: "Success", role: user.role});
+  } catch (error) {
+    console.log(error);
+   return res.json({ message: "error at register" , error});
   }
 });
 // Get User Profile

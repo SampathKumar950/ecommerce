@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const OrderDetailPage = () => {
@@ -12,6 +12,7 @@ const OrderDetailPage = () => {
   const [rating, setRating] = useState(0);
   const [showReviewBox, setShowReviewBox] = useState(false);
   const [userReview,setUserReview] = useState({rating:0,comment:''});
+  const navigate = useNavigate();
   useEffect(() => {
     fetchData();
   }, []);
@@ -101,7 +102,8 @@ const OrderDetailPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Section: Product Details */}
             <div className="space-y-6">
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-white p-6 rounded-lg shadow-md"
+              onClick={()=>navigate('/productPage',{state:{pid:order.product}})}>
                 <img
                   src={order.product.images[0]}
                   alt={order.product.name}

@@ -118,8 +118,8 @@ const ProductPage = () => {
                 <img
                   src={selectedImage}
                   alt="Selected Product"
-                  className="object-contain"
-                  style={{ width: '600px', height: '490px' }}
+                  className="w-[290px] h-[460px] md:w-[600px] md:h-[480px] object-contain"
+                  // style={{ width: '600px', height: '490px' }}
                 />
                 {/* Add to Cart Button */}
                 <button

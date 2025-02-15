@@ -6,6 +6,7 @@ import axios from "axios";
 import Navbar from '../navbar/Navbar';
 import FacebookLoginComponent from '../../trails/FacebookLoginComponent';
 import { RegisterContext } from "../../App";
+import GoogleOAuth from '../login/GoogleOAuth';
 
 function Register() {
     const navigate = useNavigate();
@@ -102,10 +103,7 @@ function Register() {
                     >
                         Register
                     </button>
-                    <button className="w-full h-8 border border-black rounded-3xl mb-2 flex justify-center items-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <FontAwesomeIcon icon={faGoogle} />
-                        <span>Sign Up with Google</span>
-                    </button>
+                    <GoogleOAuth formErrors = {formErrors} setFormErrors={setFormErrors}/>
                     <FacebookLoginComponent register={register} setRegister={setRegister}/>
                 </div>
                 <div className="text-center">

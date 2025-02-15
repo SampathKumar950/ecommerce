@@ -5,6 +5,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import { RegisterContext } from "../../App";
+import GoogleOAuth from "./GoogleOAuth";
 
 function Login() {
 
@@ -83,13 +84,10 @@ function Login() {
           <button onClick={handleSubmit} className="w-full text-white h-12 bg-blue-600 rounded-3xl mb-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
             Submit
           </button>
-          <button className="w-full h-12 border border-black rounded-3xl mb-3 flex justify-center items-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <FontAwesomeIcon icon={faGoogle} />
-            <span>Sign In with Google</span>
-          </button>
-          <button className="w-full h-12 border border-black rounded-3xl mb-1 flex justify-center items-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <FontAwesomeIcon icon={faFacebook} /> {/*  style={{ color: "#74C0FC" }} */}
-            <span>Sign In with Facebook</span>
+          <GoogleOAuth formErrors={formErrors} setFormErrors={setFormErrors}/>
+          <button className="w-full h-[40px] border border-gray-300 rounded-lg  text-md text-gray-700 my-2 flex  items-center space-x-32 hover:bg-gray-100">
+            <FontAwesomeIcon icon={faFacebook} className="ml-3"   style={{ color: "#74C0FC",fontSize:'20px' }} /> 
+            <span >Sign In with Facebook</span>
           </button>
         </div>
         <div className="text-center">

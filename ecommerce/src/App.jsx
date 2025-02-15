@@ -22,6 +22,7 @@ import ProductPage from "./pages/productpage/ProductPage";
 import OrderDetailPage from "./pages/orderPage/orderDetailPage";
 import PaymentGateway from "./trails/PaymentGateway";
 import FacebookLoginComponent from "./trails/FacebookLoginComponent";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const RegisterContext = createContext();
 const dummyOrder = {
@@ -48,6 +49,7 @@ function App(){
     return(
       <>
        <LoadingProvider>
+       <GoogleOAuthProvider clientId='716608077942-h9is3i3hbv7e8nnmp8cin195acem8e9d.apps.googleusercontent.com'>
       <RegisterContext.Provider value={{ register, setRegister }}>
       <BrowserRouter>
       <Routes>
@@ -72,6 +74,7 @@ function App(){
       </Routes>
       </BrowserRouter>
       </RegisterContext.Provider>
+      </GoogleOAuthProvider>
       </LoadingProvider>
       </>
     );

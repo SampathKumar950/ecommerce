@@ -9,21 +9,33 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Filter Component
 const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters }) => {
   const [category, setCategory] = useState(initialFilters.category || '');
-  const [priceRange, setPriceRange] = useState({
-    minPrice: initialFilters.minPrice || 0,
-    maxPrice: initialFilters.maxPrice || 100000,
-  });
   const [discount, setDiscount] = useState(initialFilters.discount || 0);
+  const [offers,setOffers] = useState(initialFilters.offers || '');
   const [rating, setRating] = useState(initialFilters.rating || 1);
-  const [offers, setOffers] = useState(initialFilters.offers || false);
   const [availability, setAvailability] = useState(initialFilters.availability || false);
   const [name, setName] = useState(initialFilters.name || '');  // Added name filter
-
+  const [minRange,setMinRange] = useState(initialFilters.minRange||'');
+  const [maxRange,setMaxRange] = useState(initialFilters.maxRange||'');
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
     onFilterChange({
       category: e.target.value,
-      priceRange,
+      minRange,
+      maxRange,
+      discount,
+      rating,
+      offers,
+      availability,
+      name,
+    });
+  };
+  const handleMinRange = (e) => {
+    const { value } = e.target;
+    setMinRange(value);
+    onFilterChange({
+      category,
+      minRange:e.target.value,
+      maxRange,
       discount,
       rating,
       offers,
@@ -32,16 +44,13 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
     });
   };
 
-  const handlePriceChange = (e) => {
-    const { name, value } = e.target;
-    setPriceRange((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-
+  const handleMaxRange = (e) => {
+    const { value } = e.target;
+    setMaxRange(value);
     onFilterChange({
       category,
-      priceRange: { ...priceRange, [name]: value },
+      minRange,
+      maxRange: e.target.value,
       discount,
       rating,
       offers,
@@ -54,7 +63,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
     setDiscount(e.target.value);
     onFilterChange({
       category,
-      priceRange,
+      minRange,
+      maxRange,
       discount: e.target.value,
       rating,
       offers,
@@ -67,7 +77,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
     setRating(newRating);
     onFilterChange({
       category,
-      priceRange,
+      minRange,
+      maxRange,
       discount,
       rating: newRating,
       offers,
@@ -80,7 +91,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
     setOffers((prev) => !prev);
     onFilterChange({
       category,
-      priceRange,
+      minRange,
+      maxRange,
       discount,
       rating,
       offers: !offers,
@@ -93,7 +105,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
     setAvailability((prev) => !prev);
     onFilterChange({
       category,
-      priceRange,
+      minRange,
+      maxRange,
       discount,
       rating,
       offers,
@@ -106,7 +119,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
     setName(e.target.value);
     onFilterChange({
       category,
-      priceRange,
+      minRange,
+      maxRange,
       discount,
       rating,
       offers,
@@ -117,7 +131,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
 
   const handleClearAll = () => {
     setCategory('');
-    setPriceRange({ min: 0, max: 1000 });
+    setMinRange(0);
+    setMaxRange(20000000);
     setDiscount(0);
     setRating(1);
     setOffers(false);
@@ -129,7 +144,8 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
   const handleSaveFilters = () => {
     onSaveFilters({
       category,
-      priceRange,
+      minRange,
+      maxRange,
       discount,
       rating,
       offers,
@@ -139,10 +155,10 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
   };
 
   return (
-    <div className="w-1/4 p-4 border-r fixed top-0 left-0 h-screen overflow-y-auto mt-20">
+    <div className="w-full md:w-1/4 p-4 border-r fixed top-0 left-0 h-screen overflow-y-auto mt-20">
       <div className="flex justify-between mb-2">
         <h2 className="text-xl font-semibold">Filters</h2>
-        <button onClick={handleClearAll} className="text-blue-500 text-sm hover:underline">Clear All</button>
+        <button onClick={handleClearAll} className="text-blue-500 ml-1 mt-1 text-sm hover:underline">Clear</button>
       </div>
 
       {/* Search by Name */}
@@ -163,9 +179,9 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
         <select value={category} onChange={handleCategoryChange} className="w-full p-2 border border-gray-300 mb-2">
           <option value="">All Categories</option>
           <option value="Fashion">Fashion</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Home">Home & Kitchen</option>
-          <option value="Mobile">Mobile</option>
+          <option value="electronics">Electronics</option>
+          <option value="home">Home & Kitchen</option>
+          <option value="mobile">Mobile</option>
         </select>
       </div>
 
@@ -176,16 +192,16 @@ const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters 
           <input
             type="number"
             name="minPrice"
-            value={priceRange.minPrice}
-            onChange={handlePriceChange}
+            value={minRange}
+            onChange={handleMinRange}
             placeholder="Min"
             className="w-1/2 p-2 border border-gray-300"
           />
           <input
             type="number"
             name="maxPrice"
-            value={priceRange.maxPrice}
-            onChange={handlePriceChange}
+            value={maxRange}
+            onChange={handleMaxRange}
             placeholder="Max"
             className="w-1/2 p-2 border border-gray-300"
           />
@@ -363,11 +379,12 @@ const ProductCard = ({ product, token, likedProducts, setLikedProducts, addedToC
 
 const EcommerceSearchPage = () => {
   const location = useLocation();
-  const { category, minPrice, maxPrice, discount, rating, offers, availability, name } = location.state || {};
+  const { category, minPrice, maxPrice, discount, rating, offers, availability} = location.state || {};
+  const {name} = location.state?.query||'';
   const [filters, setFilters] = useState({
     category: category || 'All',
-    minPrice: minPrice || 0,
-    maxPrice: maxPrice || 100000,
+    minRange: minPrice || 0,
+    maxRange: maxPrice || 20000000,
     discount: discount || 0,
     rating: rating || 3,
     availability: availability || true,
@@ -408,18 +425,40 @@ const EcommerceSearchPage = () => {
     fetchProducts();
     fetchLikedProducts();
   }, [filters, token]);
-
+const[showFilter,setShowFilter] = useState(false);
   return (
-    <div>
+    <>
+    <div className='mb-20'>
       <Navbar />
-      <div className="flex mt-20">
+    </div>
+      <div className="block md:hidden text-indigo-500 cursor-pointer hover:underline"
+      onClick={()=>setShowFilter(!showFilter)}>{showFilter===false?'Show Filters':'Close'}</div>
+      <div className={`${showFilter?'fixed inset-0 bg-white opacity-[90%] flex justify-center items-center z-50 md-hidden':'hidden'}`}>
+      <Filter
+          onFilterChange={setFilters}
+          onClearFilters={() => setFilters({
+            category: '',
+            name: '',
+            minRange: 0,
+            maxRange: 20000000,
+            discount: 0,
+            rating: 1,
+            offers: false,
+            availability: false,
+          })}
+          onSaveFilters={()=>setShowFilter(false)}
+          initialFilters={filters} 
+        />
+      </div>
+      <div className="flex">
+        <div className='hidden md:block'>
         <Filter
           onFilterChange={setFilters}
           onClearFilters={() => setFilters({
             category: '',
             name: '',
-            minPrice: 0,
-            maxPrice: 100000000,
+            minRange: 0,
+            maxRange: 10000000,
             discount: 0,
             rating: 1,
             offers: false,
@@ -428,7 +467,8 @@ const EcommerceSearchPage = () => {
           onSaveFilters={setFilters}
           initialFilters={filters} 
         />
-        <div className="w-3/4 p-4 ml-[25%] overflow-y-auto">
+        </div>
+        <div className={`w-full md:w-3/4 p-4 md:ml-[25%] overflow-y-auto`}>
           {filteredProducts.length === 0 ? (
             <div className="mt-40 text-center text-lg font-semibold text-gray-500">
               No products found for the selected filters.
@@ -450,7 +490,7 @@ const EcommerceSearchPage = () => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -44,7 +44,7 @@ const Navbar = ({isHomePage}) => {
   }
   const handleSearch = ()=>{
     console.log(searchVal);
-    navigate('/searchPage',{state:{name:searchVal}});
+    navigate('/searchPage',{state:{query:{name:searchVal}}});
   }
   return (
     <div  className={` fixed top-0 left-0 w-full ${
