@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import axios from 'axios';
+import Api from "../../../assets/Api";
 
 const AdminVendorRequests = () => {
   const token = localStorage.getItem('authtoken');
@@ -8,7 +9,7 @@ const AdminVendorRequests = () => {
     fetchData();
   },[])
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/admins/requests',{
+    const data = await Api.get('/api/admins/requests',{
         headers:{
           Authorization: `Bearer ${token}`
         },
@@ -40,7 +41,7 @@ const AdminVendorRequests = () => {
   const handleAccept = (id) => {
     console.log(id);
     try{
-      const res = axios.post('http://localhost:3000/api/admins/acceptRequest',{vendorId:id},{
+      const res = Api.post('/api/admins/acceptRequest',{vendorId:id},{
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -56,7 +57,7 @@ const AdminVendorRequests = () => {
   // Handle Reject Request
   const handleReject = (id) => {
     try{
-      const res = axios.post('http://localhost:3000/api/admins/rejectRequest',{vendorId:id},{
+      const res = Api.post('/api/admins/rejectRequest',{vendorId:id},{
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -72,7 +73,7 @@ const AdminVendorRequests = () => {
   // Handle Withdraw Approval
   const handleWithdrawApproval = (id) => {
     try{
-      const res = axios.post('http://localhost:3000/api/admins/acceptWithdraw',{vendorId:id},{
+      const res = Api.post('/api/admins/acceptWithdraw',{vendorId:id},{
         headers:{
           Authorization: `Bearer ${token}`
         }
@@ -88,7 +89,7 @@ const AdminVendorRequests = () => {
   // Handle Withdraw Rejection
   const handleWithdrawRejection = (id) => {
     try{
-      const res = axios.post('http://localhost:3000/api/admins/rejectWithdraw',{vendorId:id},{
+      const res = Api.post('/api/admins/rejectWithdraw',{vendorId:id},{
         headers:{
           Authorization: `Bearer ${token}`
         }

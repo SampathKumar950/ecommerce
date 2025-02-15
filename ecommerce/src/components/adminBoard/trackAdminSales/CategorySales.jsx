@@ -12,6 +12,7 @@ import {
   CategoryScale,
   LinearScale,
 } from 'chart.js';
+import Api from '../../../assets/Api';
 
 // Register chart elements
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
@@ -25,7 +26,7 @@ const CategorySales = () => {
   const token = localStorage.getItem('authtoken');
   const fetchData = async()=>{
     try{
-      const res = await axios.get('http://localhost:3000/api/admins/adminPie',{
+      const res = await Api.get('/api/admins/adminPie',{
         headers:{
         Authorization: `Bearer ${token}`,
         },

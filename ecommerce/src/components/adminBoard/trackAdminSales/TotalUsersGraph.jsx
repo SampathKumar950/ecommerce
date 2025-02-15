@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 const TotalUsersGraph = () => {
 
@@ -13,7 +14,7 @@ const TotalUsersGraph = () => {
   const token = localStorage.getItem('authtoken');
   const fetchData = async()=>{
     try{
-      const res = await axios.get('http://localhost:3000/api/admins/graph',{
+      const res = await Api.get('/api/admins/graph',{
         headers:{
         Authorization: `Bearer ${token}`,
         },

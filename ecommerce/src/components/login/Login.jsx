@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import Navbar from "../navbar/Navbar";
 import { RegisterContext } from "../../App";
 import GoogleOAuth from "./GoogleOAuth";
+import Api from "../../assets/Api";
 
 function Login() {
 
@@ -26,7 +27,7 @@ function Login() {
     }
     const validate = async(values)=>{
 
-        const data = await axios.post('http://localhost:3000/api/users/login',values);
+        const data = await Api.post('/api/users/login',values);
         if(data.data.message==='Success'){
 
           const {token} = data.data;

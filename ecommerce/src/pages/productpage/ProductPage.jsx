@@ -6,6 +6,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import Review from './Review';
+import Api from '../../assets/Api';
 
 const ProductPage = () => {
   const token = localStorage.getItem('authtoken');
@@ -21,7 +22,7 @@ const ProductPage = () => {
 
   const fetchData = async () => {
     try {
-      const data = await axios.get('http://localhost:3000/api/products/getProduct', {
+      const data = await Api.get('/api/products/getProduct', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,14 +48,14 @@ const ProductPage = () => {
     }
     if (isLiked) {
       setIsLiked(false);
-      await axios.delete(`http://localhost:3000/api/users/wishlist?productId=${product._id}`, {
+      await Api.delete(`/api/users/wishlist?productId=${product._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
     } else {
       setIsLiked(true);
-      await axios.post('http://localhost:3000/api/users/wishlist', { productId: product._id }, {
+      await Api.post('/api/users/wishlist', { productId: product._id }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -67,7 +68,7 @@ const ProductPage = () => {
       navigate('/login');
     }
     try {
-      await axios.post('http://localhost:3000/api/users/cart', { productId }, {
+      await Api.post('/api/users/cart', { productId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

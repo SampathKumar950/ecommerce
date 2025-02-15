@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from 'react';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 // Sample orders data
 const ordersData = [
@@ -34,7 +35,7 @@ const AdminOrders = () => {
     fetchData();
   },[])
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/admins/orders',{
+    const data = await Api.get('/api/admins/orders',{
         headers:{
           Authorization: `Bearer ${token}`
         },

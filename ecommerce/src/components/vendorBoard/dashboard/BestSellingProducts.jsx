@@ -2,6 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 const BestSellingProducts = () => {
   const token = localStorage.getItem('authtoken');
@@ -11,7 +12,7 @@ const BestSellingProducts = () => {
     },[])
   const fetchData = async()=>{
     try{
-      const response = await axios.get('http://localhost:3000/api/vendors/bestRated',{
+      const response = await Api.get('/api/vendors/bestRated',{
         headers:{
           Authorization: `Bearer ${token}`,
         },

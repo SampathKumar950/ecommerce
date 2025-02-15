@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Api from '../../../assets/Api';
 
 const VendorReviews = () => {
   const itemsPerPage = 3; // Number of reviews per page
@@ -16,7 +17,7 @@ const VendorReviews = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/vendors/reviews', {
+      const res = await Api.get('/api/vendors/reviews', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +51,7 @@ const VendorReviews = () => {
 
     if (!replyTextValue.trim()) return; // Prevent empty replies
     try{
-      const res = await axios.put('http://localhost:3000/api/vendors/editReply',{reviewId,replyTextValue},{
+      const res = await Api.put('/api/vendors/editReply',{reviewId,replyTextValue},{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -72,7 +73,7 @@ const VendorReviews = () => {
     const updatedReplyText = replyText[reviewId];
     if (!updatedReplyText.trim()) return; // Prevent empty replies
    try{
-      const res = await axios.put('http://localhost:3000/api/vendors/editReply',{reviewId,replyTextValue:updatedReplyText},{
+      const res = await Api.put('/api/vendors/editReply',{reviewId,replyTextValue:updatedReplyText},{
         headers:{
           Authorization: `Bearer ${token}`,
         }

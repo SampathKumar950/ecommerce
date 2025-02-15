@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Api from "../../assets/Api";
 
 const Wishlist = () => {
   const token = localStorage.getItem('authtoken');
@@ -19,7 +20,7 @@ const Wishlist = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/users/wishlist', {
+      const response = await Api.get('/api/users/wishlist', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +41,7 @@ const Wishlist = () => {
       setLikedProducts(prev => prev.filter(productId => productId !== id));
       setWishlist(prev => prev.filter(item => item._id !== id));
 
-      await axios.delete(`http://localhost:3000/api/users/wishlist?productId=${id}`, {
+      await Api.delete(`/api/users/wishlist?productId=${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +51,7 @@ const Wishlist = () => {
 
   const handleAddToCart = async (productId) => {
     try {
-      await axios.post('http://localhost:3000/api/users/cart', { productId }, {
+      await Api.post('/api/users/cart', { productId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

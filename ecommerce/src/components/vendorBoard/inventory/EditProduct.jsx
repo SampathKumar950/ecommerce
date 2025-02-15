@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Api from '../../../assets/Api';
 
 const EditProduct = ({product,setProduct}) => {
 
@@ -29,7 +30,7 @@ const EditProduct = ({product,setProduct}) => {
          // You can handle saving the changes here (e.g., make an API call or update local state)
          try{
           console.log('Changes saved:', editedProduct);
-         const data = await axios.put('http://localhost:3000/api/vendors/updateProduct',editedProduct,{
+         const data = await Api.put('/api/vendors/updateProduct',editedProduct,{
           headers:{
             Authorization: `Bearer ${token}`,
           },

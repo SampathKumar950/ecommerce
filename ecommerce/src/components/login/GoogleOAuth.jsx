@@ -6,6 +6,7 @@ import {jwtDecode} from 'jwt-decode'; // to decode the JWT token
 import axios from "axios";
 import { RegisterContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
+import Api from '../../assets/Api';
 const GoogleOAuth = ({formErrors,setFormErrors}) => {
     const {register,setRegister} = useContext(RegisterContext);
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
       // Decode the JWT token to get user information
       const userObject = jwtDecode(response?.credential);
       console.log('User Info:', userObject);
-      const data = await axios.post("http://localhost:3000/api/users/google",{
+      const data = await Api.post('/api/users/google',{
         userData: userObject,
       });
       if(data.data.message==='Success'){

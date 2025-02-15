@@ -4,6 +4,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import axios from 'axios';
+import Api from '../../assets/Api';
 const Orders = () => {
   // Example orders data
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Orders = () => {
   const [orderList, setOrderList] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/users/orders', {
+      const response = await Api.get('/api/users/orders', {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         },
@@ -61,7 +62,7 @@ const Orders = () => {
         console.log("hi");
         
         // Make the PATCH request with the appropriate structure
-        const response = await axios.patch('http://localhost:3000/api/users/order', 
+        const response = await Api.patch('/api/users/order', 
           // No body here, you can use params to send data
           null, 
           {

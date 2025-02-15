@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Api from '../../../assets/Api';
 
 const AccountInfo = ({ token }) => {
   const [profile, setProfile] = useState({
@@ -23,7 +24,7 @@ const AccountInfo = ({ token }) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/users/profile', {
+      const response = await Api.get('/api/users/profile', {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         },
@@ -63,7 +64,7 @@ const AccountInfo = ({ token }) => {
     if (!profile.showPasswordReset) {
       // Submit form to validate old password and change data
       try {
-        const response = await axios.post('http://localhost:3000/api/users/changeProfile', profile ,{
+        const response = await Api.post('/api/users/changeProfile', profile ,{
           headers:{
             Authorization: `Bearer ${token}`
           }
@@ -93,7 +94,7 @@ const AccountInfo = ({ token }) => {
   const generateOtp = async()=>{
     console.log('hi');
     try{
-    const res = await axios.post('http://localhost:3000/api/users/otpGen',{email:profile.email});
+    const res = await Api.post('/api/users/otpGen',{email:profile.email});
     const data = res.data.otp;
     setGeneratedOtp(data);
     }catch(err){
@@ -104,7 +105,7 @@ const AccountInfo = ({ token }) => {
     e.preventDefault();
     if (profile.otp === generatedOtp.toString()) {
       try {
-        const response = await axios.post('http://localhost:3000/api/users/changePassword', {password:profile.newPassword} ,{
+        const response = await Api.post('/api/users/changePassword', {password:profile.newPassword} ,{
           headers:{
             Authorization: `Bearer ${token}`
           }

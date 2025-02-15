@@ -2,6 +2,7 @@ import React, { useState , useEffect} from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import Navbar from '../navbar/Navbar';
 import axios from 'axios';
+import Api from '../../assets/Api';
 
 const VendorForm = () => {
   const [vendorDetails, setVendorDetails] = useState({
@@ -19,14 +20,14 @@ const VendorForm = () => {
   },[])
   const fetchData = async()=>{
     try{
-      const response = await axios.get('http://localhost:3000/api/users/request',{
+      const response = await Api.get('/api/users/request',{
         headers:{
           Authorization: `Bearer ${token}`,
         },
       })
       const data = response.data.vendor;
-      if(data){
-        setIsSubmitted(false);
+      if(data!=null){
+        setIsSubmitted(true);
       }
     }catch(error){
       console.log(error);
@@ -52,7 +53,7 @@ const VendorForm = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      const response = await axios.post('http://localhost:3000/api/users/request',vendorDetails,{
+      const response = await Api.post('/api/users/request',vendorDetails,{
         headers:{
           Authorization: `Bearer ${token}`,
         },

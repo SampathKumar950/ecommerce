@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { RegisterContext } from "../../App";
 import Navbar from "../navbar/Navbar";
+import Api from "../../assets/Api";
 
 function Otp() {
   const { register, setRegister } = useContext(RegisterContext);
@@ -26,7 +27,7 @@ function Otp() {
   const handleSubmit = async () => {
     const otpSubmitted = otp.join("");
     if (otpSubmitted === otpCode) {
-      await axios.post("http://localhost:3000/api/users/register", location.state.values);
+      await Api.post('/api/users/register', location.state.values);
       setRegister(1);
       localStorage.setItem("otpVerified", "true"); // Store OTP verification status
       navigate("/home");
@@ -49,9 +50,10 @@ function Otp() {
   const sendOtp = async () => {
     // Check if OTP has already been sent
     const otpSent = localStorage.getItem("otpSent");
+    console.log(otpSent);
     if (!otpSent) {
       // Generate and send OTP only if not already sent
-      const data = await axios.post("http://localhost:3000/api/users/otpGen", {
+      const data = await Api.post('/api/users/otpGen', {
         email: location.state.values.email,
       });
       setOtpCode(data.data.otp);

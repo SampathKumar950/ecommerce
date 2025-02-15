@@ -10,6 +10,7 @@ import {
   CategoryScale,
   LinearScale,
 } from 'chart.js';
+import Api from '../../../assets/Api';
 
 // Register chart elements
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
@@ -23,7 +24,7 @@ const OrderStatusPieChart = () => {
   const token = localStorage.getItem('authtoken');
   const fetchData = async()=>{
     try{
-      const res = await axios.get('http://localhost:3000/api/vendors/dashBoardPie',{
+      const res = await Api.get('/api/vendors/dashBoardPie',{
         headers:{
         Authorization: `Bearer ${token}`,
         },

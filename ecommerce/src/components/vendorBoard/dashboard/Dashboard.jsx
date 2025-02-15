@@ -9,6 +9,7 @@ import BestSellingProducts from './BestSellingProducts';
 import BestRatedProducts from './BestRatedProducts';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 // Register Chart.js components and the plugin
 ChartJS.register(
@@ -40,7 +41,7 @@ const Dashboard = () => {
   const token = localStorage.getItem('authtoken');
   const fetchData = async()=>{
     try{
-      const res = await axios.get('http://localhost:3000/api/vendors/dashBoard',{
+      const res = await Api.get('/api/vendors/dashBoard',{
         headers:{
         Authorization: `Bearer ${token}`,
         },

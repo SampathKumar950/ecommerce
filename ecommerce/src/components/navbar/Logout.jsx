@@ -1,5 +1,6 @@
 import React, { useState ,useEffect} from "react"
 import axios from 'axios';
+import Api from "../../assets/Api";
 
 
 export const Logout = ()=>{
@@ -14,7 +15,7 @@ export const Logout = ()=>{
     const handleYes = async()=>{
         // Logic For Removeing Product;
         try{
-            const productList = await axios.delete('http://localhost:3000/api/vendors/deleteProduct',{
+            const productList = await Api.delete('/api/vendors/deleteProduct',{
               headers:{
                 Authorization : `Bearer ${token}`,
               },

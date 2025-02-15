@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { handlePayment } from '../../trails/handlePayment';
+import Api from '../../assets/Api';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -16,7 +17,7 @@ const CartPage = () => {
   const handleSuccess = async(tid)=>{
     console.log(tid);
     try{
-      const res = await axios.post('http://localhost:3000/api/users/createOrder',{
+      const res = await Api.post('/api/users/createOrder',{
         tid: tid,
         cartItems
       },{
@@ -33,7 +34,7 @@ const CartPage = () => {
   const fetchCart = async () => {
     try {
       console.log(token);
-      const response = await axios.get('http://localhost:3000/api/users/cart', {
+      const response = await Api.get('/api/users/cart', {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         },
@@ -80,7 +81,7 @@ const CartPage = () => {
     try {
       console.log(token);
       console.log(id);
-      const response = await axios.post('http://localhost:3000/api/users/cartItemDelete',{id}, {
+      const response = await Api.post('/api/users/cartItemDelete',{id}, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         },

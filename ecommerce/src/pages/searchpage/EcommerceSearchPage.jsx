@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Api from '../../assets/Api';
 
 // Filter Component
 const Filter = ({ onFilterChange, onClearFilters, onSaveFilters, initialFilters }) => {
@@ -279,7 +280,7 @@ const ProductCard = ({ product, token, likedProducts, setLikedProducts, addedToC
       return;
     }
     if (likedProducts.includes(id)) {
-      await axios.delete(`http://localhost:3000/api/users/wishlist?productId=${id}`, {
+      await Api.delete(`/api/users/wishlist?productId=${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -287,7 +288,7 @@ const ProductCard = ({ product, token, likedProducts, setLikedProducts, addedToC
       setLikedProducts(likedProducts.filter((productId) => productId !== id));
     } else {
       setLikedProducts([...likedProducts, id]);
-      await axios.post('http://localhost:3000/api/users/wishlist', { productId: id }, {
+      await Api.post('/api/users/wishlist', { productId: id }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -303,7 +304,7 @@ const ProductCard = ({ product, token, likedProducts, setLikedProducts, addedToC
       return;
     }
     try {
-      await axios.post('http://localhost:3000/api/users/cart', { productId }, {
+      await Api.post('/api/users/cart', { productId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -399,7 +400,7 @@ const EcommerceSearchPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/products/search', {
+        const response = await Api.get('/api/products/search', {
           params: filters,
         });
         setFilteredProducts(response.data);
@@ -410,7 +411,7 @@ const EcommerceSearchPage = () => {
 
     const fetchLikedProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/users/wishlist', {
+        const response = await Api.get('/api/users/wishlist', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

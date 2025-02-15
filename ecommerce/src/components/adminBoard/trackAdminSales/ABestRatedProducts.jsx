@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductCard from '../../vendorBoard/dashboard/ProductCard';
 // import ProductCard from '../../homeComp/ProductCard';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 const ABestRatedProducts = () => {
   const token = localStorage.getItem('authtoken');
@@ -11,7 +12,7 @@ const ABestRatedProducts = () => {
   },[])
   const fetchData = async()=>{
     try{
-      const response = await axios.get('http://localhost:3000/api/admins/bestRated',{
+      const response = await Api.get('/api/admins/bestRated',{
         headers:{
           Authorization: `Bearer ${token}`,
         },

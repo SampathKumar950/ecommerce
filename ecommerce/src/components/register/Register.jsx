@@ -7,6 +7,7 @@ import Navbar from '../navbar/Navbar';
 import FacebookLoginComponent from '../../trails/FacebookLoginComponent';
 import { RegisterContext } from "../../App";
 import GoogleOAuth from '../login/GoogleOAuth';
+import Api from '../../assets/Api';
 
 function Register() {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ function Register() {
     };
 
     const validate = async (values) => {
-        const data = await axios.post('http://localhost:3000/api/users/validate', values);
+        const data = await Api.post('/api/users/validate', values);
         if (data.data.message === 'Success') {
             navigate('/otp', { state: { values } });
         } else {

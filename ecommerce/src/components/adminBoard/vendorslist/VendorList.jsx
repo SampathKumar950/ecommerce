@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import VendorCard from "./VendorCard";
 import axios from 'axios';
+import Api from "../../../assets/Api";
 
 const VendorList = () => {
   const token = localStorage.getItem('authtoken');
@@ -10,7 +11,7 @@ const VendorList = () => {
     fetchData();
   },[])
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/admins/vendors',{
+    const data = await Api.get('/api/admins/vendors',{
       headers:{
         Authorization: `Bearer ${token}`,
       },
@@ -42,7 +43,7 @@ const VendorList = () => {
    // Handle user removal
    const handleRemove = async(id) => {
     try{
-      const res = await axios.delete('http://localhost:3000/api/admins/deleteVendor',{
+      const res = await Api.delete('/api/admins/deleteVendor',{
         headers:{
           Authorization : `Bearer ${token}`,
         },

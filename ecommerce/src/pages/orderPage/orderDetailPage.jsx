@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Api from '../../assets/Api';
 
 const OrderDetailPage = () => {
   const token = localStorage.getItem('authtoken');
@@ -21,7 +22,7 @@ const OrderDetailPage = () => {
     console.log(location.state);
     console.log(orderId);
     try {
-      const res = await axios.get('http://localhost:3000/api/users/orderDetail', {
+      const res = await Api.get('/api/users/orderDetail', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +39,7 @@ const OrderDetailPage = () => {
   };
   const fetchReview = async(reviewId)=>{
     try {
-      const res = await axios.get('http://localhost:3000/api/users/review', {
+      const res = await Api.get('/api/users/review', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -67,7 +68,7 @@ const OrderDetailPage = () => {
   const handleReviewSubmit = async () => {
     if (review.length > 0) {
       try {
-        const response = await axios.patch('http://localhost:3000/api/users/order', null, {
+        const response = await Api.patch('/api/users/order', null, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

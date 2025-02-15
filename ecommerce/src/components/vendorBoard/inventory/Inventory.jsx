@@ -7,6 +7,7 @@ import EditProduct from './EditProduct';
 import { RemoveCard } from './RemoveCard';
 import axios from 'axios';
 import AddProductModel from './AddProductModel';
+import Api from '../../../assets/Api';
 
 const Inventory = () => {
   const [products,setProducts] = useState([]);
@@ -16,7 +17,7 @@ const Inventory = () => {
   },[]);
  const getProducts = async()=>{ //currentPage,productsPerPage
   try{
-  const productList = await axios.get('http://localhost:3000/api/vendors/inventory',{
+  const productList = await Api.get('/api/vendors/inventory',{
     headers:{
       Authorization : `Bearer ${token}`,
     },

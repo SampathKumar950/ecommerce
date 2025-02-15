@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Api from '../../../assets/Api';
 
 
 const AdminProductsPage = () => {
@@ -16,7 +17,7 @@ const AdminProductsPage = () => {
     fetchData();
   },[])
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/admins/products',{
+    const data = await Api.get('/api/admins/products',{
       headers:{
         Authorization: `Bearer ${token}`,
       },

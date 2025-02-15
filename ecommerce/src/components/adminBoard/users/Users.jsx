@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { UserRemoveCard } from './UserRemoveCard';
+import Api from '../../../assets/Api';
 
 const AdminUserList = () => {
   const token = localStorage.getItem('authtoken');
@@ -10,7 +11,7 @@ const AdminUserList = () => {
     fetchData();
   },[])
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/admins/users',{
+    const data = await Api.get('/api/admins/users',{
       headers:{
         Authorization: `Bearer ${token}`,
       },
@@ -37,7 +38,7 @@ const AdminUserList = () => {
   // Handle user removal
   const handleRemove = async(id) => {
     try{
-      const res = await axios.delete('http://localhost:3000/api/admins/deleteUser',{
+      const res = await Api.delete('/api/admins/deleteUser',{
         headers:{
           Authorization : `Bearer ${token}`,
         },

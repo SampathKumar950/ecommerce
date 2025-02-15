@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 const AddProductModel = ({ isOpen, onClose, onAddProduct }) => {
   const [productDetails, setProductDetails] = useState({
@@ -52,7 +53,7 @@ const AddProductModel = ({ isOpen, onClose, onAddProduct }) => {
     e.preventDefault();
     try{
       console.log(token);
-      const productList = await axios.post('http://localhost:3000/api/vendors/createProduct',productDetails,{
+      const productList = await Api.post('/api/vendors/createProduct',productDetails,{
         headers:{
           Authorization : `Bearer ${token}`,
         },

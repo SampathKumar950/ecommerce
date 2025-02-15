@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react';
 import OrderCard from './OrderCard';
 import EditOrder from './EditOrder';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 const OrdersPage = () => {
     
@@ -56,7 +57,7 @@ const OrdersPage = () => {
    },[orderEdit]);
    const fetchData = async()=>{
     try{
-      const res = await axios.get('http://localhost:3000/api/vendors/orders',{
+      const res = await Api.get('/api/vendors/orders',{
         headers:{
           Authorization : `Bearer ${token}`,
         },

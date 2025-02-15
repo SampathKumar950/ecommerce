@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Api from '../../../assets/Api';
 
 
 
@@ -16,7 +17,7 @@ const Wishlist = () => {
   },[])
  
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/users/wishlist',{
+    const data = await Api.get('/api/users/wishlist',{
         headers:{
           Authorization: `Bearer ${token}`,
         },

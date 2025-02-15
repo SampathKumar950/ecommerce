@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Api from '../../../assets/Api';
 
 const OrderHistory = () => {
   const token = localStorage.getItem('authtoken');
@@ -10,7 +11,7 @@ const OrderHistory = () => {
     fetchData();
   },[])
   const fetchData = async()=>{
-    const data = await axios.get('http://localhost:3000/api/users/orders',{
+    const data = await Api.get('/api/users/orders',{
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../../vendorBoard/dashboard/ProductCard';
 import axios from 'axios';
+import Api from '../../../assets/Api';
 
 const ABestSellingProducts = () => {
 
@@ -11,7 +12,7 @@ const ABestSellingProducts = () => {
   },[])
   const fetchData = async()=>{
     try{
-      const response = await axios.get('http://localhost:3000/api/admins/bestSold',{
+      const response = await Api.get('/api/admins/bestSold',{
         headers:{
           Authorization: `Bearer ${token}`,
         },

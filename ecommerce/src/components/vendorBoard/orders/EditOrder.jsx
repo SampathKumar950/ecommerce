@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Api from '../../../assets/Api';
 
 const EditOrder = ({order,setOrder}) => {
 
@@ -20,7 +21,7 @@ const EditOrder = ({order,setOrder}) => {
       const handleSaveChanges = async()=>{
                           // save logic here
           try{
-            const res = await axios.put('http://localhost:3000/api/vendors/editOrder',{status:status,id:order._id},{
+            const res = await Api.put('/api/vendors/editOrder',{status:status,id:order._id},{
             headers:{
             Authorization: `Bearer ${token}`,
             },

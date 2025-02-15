@@ -6,6 +6,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import ProductCard from './ProductCard';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Api from "../../assets/Api";
 
 const ProductList = ({ category, likedProducts, handleLikeToggle }) => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ const ProductList = ({ category, likedProducts, handleLikeToggle }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:3000/api/products/getProducts', {
+        const { data } = await Api.get('/api/products/getProducts', {
           params: { category },
         });
         setProducts(data.products); // Set products

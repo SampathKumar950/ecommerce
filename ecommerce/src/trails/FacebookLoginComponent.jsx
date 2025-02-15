@@ -37,7 +37,7 @@ const FacebookLoginComponent = ({register,setRegister}) => {
           console.log('Welcome!  Fetching your information.... ');
           window.FB.api('/me', async (userInfo) => {
             console.log(userInfo);
-            const data = await axios.post('http://localhost:3000/api/users/flogin',{
+            const data = await Api.post('/api/users/flogin',{
               userInfo
             });
             if(data.data.message==='Success'){

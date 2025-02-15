@@ -8,6 +8,7 @@ import Banner from "../../components/homeComp/Banner";
 import FashionBanner from "../../components/homeComp/FashionBanner";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Api from "../../assets/Api";
 
 const Home = () => {
   const token = localStorage.getItem('authtoken');
@@ -17,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     const fetchLikedData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:3000/api/users/wishlist', {
+        const { data } = await Api.get('/api/users/wishlist', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -41,7 +42,7 @@ const Home = () => {
     if (isLiked) {
       // If already liked, remove from the list
       setLikedProducts(likedProducts.filter((likedProduct) => likedProduct._id !== product._id));
-      await axios.delete(`http://localhost:3000/api/users/wishlist?productId=${product._id}`, {
+      await Api.delete(`/api/users/wishlist?productId=${product._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,7 +50,7 @@ const Home = () => {
     } else {
       // If not liked, add to the list
       setLikedProducts([...likedProducts, product]);
-      await axios.post('http://localhost:3000/api/users/wishlist', { productId: product._id }, {
+      await Api.post('/api/users/wishlist', { productId: product._id }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
