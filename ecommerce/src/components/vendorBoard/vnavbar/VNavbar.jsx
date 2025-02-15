@@ -34,7 +34,7 @@ const VNavbar = (props) => {
         </button>
        <div className="flex items-center">
         {/* Menu Button for Mobile */}
-        <div onClick={()=>navigate('/home')}>
+        <div onClick={()=>navigate('/')}>
         <FontAwesomeIcon icon={faHome} className="h-6 w-6 mr-2" />
         <a href="#" className="text-lg hover:text-gray-400 mr-2">Home</a>
         </div>
