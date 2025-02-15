@@ -4,7 +4,7 @@ import OrderHistory from '../../components/userProfile/orderHistory/OrderHistory
 import ShippingInfo from '../../components/userProfile/shippingInfo/ShippingInfo';
 import Notifications from '../../components/userProfile/notifications/Notifications';
 import SecuritySettings from '../../components/userProfile/securitySettings/SecuritySettings';
-import Wishlist from '../../components/userProfile/wishlist/WishList';
+import Wishlist from '../../components/userProfile/wishlist/Wishlist';
 import Navbar from '../../components/navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { RegisterContext } from '../../App';
