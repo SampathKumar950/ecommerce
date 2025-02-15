@@ -51,7 +51,7 @@ function App(){
       <RegisterContext.Provider value={{ register, setRegister }}>
       <BrowserRouter>
       <Routes>
-        <Route path='/home' element = {<Home />}></Route>
+        <Route path='/' element = {<Home />}></Route>
         <Route path="/wishlist" element = {<Wishlist />}></Route>
         <Route path="/vendorform" element = {<VendorForm />}></Route>
         <Route path="/vendor" element= {<Vendor />}></Route>
