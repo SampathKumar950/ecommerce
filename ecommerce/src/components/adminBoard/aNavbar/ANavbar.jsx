@@ -10,7 +10,7 @@ const ANavbar = () => {
     <nav className="flex justify-between items-center p-6">
       {/* Left: Profile with icon */}
       <div className="flex items-center">
-      <div className="flex items-center" onClick={()=>navigate('/home')}>
+      <div className="flex items-center" onClick={()=>navigate('/')}>
         <FontAwesomeIcon icon={faHome} className="h-6 w-6 mr-2" />
         <a href="#" className="text-lg hover:text-gray-400">Home</a>
         </div>
