@@ -1,5 +1,5 @@
 import ANavbar from "../../components/adminBoard/aNavbar/ANavbar";
-import ASideBar from "../../components/adminBoard/sidebar/aSideBar";
+import ASideBar from "../../components/adminBoard/sidebar/ASideBar";
 import { useState } from "react";
 import TrackSales from "../../components/adminBoard/trackAdminSales/TrackSales";
 import VendorList from "../../components/adminBoard/vendorslist/VendorList";
