@@ -30,7 +30,7 @@ function Otp() {
       await Api.post('/api/users/register', location.state.values);
       setRegister(1);
       localStorage.setItem("otpVerified", "true"); // Store OTP verification status
-      navigate("/home");
+      navigate("/");
     } else {
       alert("You entered the wrong OTP.");
       setOtp(["", "", "", "", "", ""]);
@@ -41,7 +41,7 @@ function Otp() {
   useEffect(() => {
     const otpVerified = localStorage.getItem("otpVerified");
     if (otpVerified === "true") {
-      navigate("/home"); // Redirect to home page if OTP is already verified
+      navigate("/"); // Redirect to home page if OTP is already verified
     } else {
       sendOtp(); // Send OTP only if it's not already verified
     }
