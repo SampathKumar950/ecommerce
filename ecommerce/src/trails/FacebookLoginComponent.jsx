@@ -52,7 +52,7 @@ const FacebookLoginComponent = ({register,setRegister}) => {
                 else
                  setRegister(1);
     
-              navigate('/home');
+              navigate('/');
             }else{
                 console.log(data.data.errors);
                 setFormErrors(data.data.errors);
