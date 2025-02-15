@@ -168,7 +168,7 @@ const Orders = () => {
               <div key={order._id} className="bg-white shadow-md rounded-lg p-6 mb-6">
                 <div className="flex items-center space-x-6">
                   {/* Product Image */}
-                  <div className="flex-shrink-0"  onClick = {()=>{navigate('/productPage',{state:{pid:order.product._id}})}}>
+                  <div className="flex-shrink-0"  onClick = {()=>{navigate('/productPage',{state:{pid:order.product}})}}>
                     <img src={order.productImage} alt={"alternative"} className="w-32 h-32 object-bit rounded" />
                   </div>
 
