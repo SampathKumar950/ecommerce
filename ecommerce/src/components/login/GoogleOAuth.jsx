@@ -30,7 +30,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
           else
            setRegister(1);
 
-        navigate('/home');
+        navigate('/');
       }
     }else{
         setFormErrors({...formErrors,invalid:"invalid Credentials"});
