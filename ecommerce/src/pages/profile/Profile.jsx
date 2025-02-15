@@ -16,7 +16,7 @@ const Profile = () => {
   const {register,setRegister} = useContext(RegisterContext);
     if(!token){
       setRegister(0);
-      navigate('/home');
+      navigate('/');
     }
   return (
     <>
