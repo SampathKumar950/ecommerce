@@ -1,6 +1,6 @@
 import React, { useState , useEffect} from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
-import Navbar from '../navbar/Navbar';
+import Navbar from '../../components/navbar/Navbar';
 import axios from 'axios';
 import Api from '../../assets/Api';
 

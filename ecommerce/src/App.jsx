@@ -10,7 +10,6 @@ import Inventory from "./components/vendorBoard/inventory/Inventory";
 import Profile from "./pages/profile/Profile";
 import Admin from "./pages/admin/Admin";
 import ProductShowcase from "./components/productshowcase/ProductShowcase";
-import VendorForm from "./components/vendorBoard/vendorForm";
 import CartPage from "./pages/cart/CartPage";
 import Wishlist from "./pages/wishlist/Wishlist";
 import Home from "./pages/home/Home";
@@ -23,6 +22,7 @@ import OrderDetailPage from "./pages/orderPage/orderDetailPage";
 import PaymentGateway from "./trails/PaymentGateway";
 import FacebookLoginComponent from "./trails/FacebookLoginComponent";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import VendorForm from "./pages/vendorFormPage/VendorForm";
 
 export const RegisterContext = createContext();
 const dummyOrder = {
