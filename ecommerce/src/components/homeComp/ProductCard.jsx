@@ -22,17 +22,16 @@ const ProductCard = ({ product, likedProducts, handleLikeToggle }) => {
         <img
           src={product.images[0]}
           alt={product.name}
-          className="h-[300px] w-[300px] object-contain"
+          className="h-[150px] w-[300px] lg:h-[300px]  object-contain"
         />
       </div>
-
-      <div className="p-3 flex flex-col justify-between h-51">
-        <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold">{product.name.substring(0,18)}{product.name.length>=18?'...':''}</h3>
           <h2 className="bg-green-700 text-white p-1 text-sm rounded-md">
             {product.rating} <FontAwesomeIcon icon={faStar} style={{ color: 'white' }} />
           </h2>
         </div>
+      <div className="hidden p-3 lg:flex flex-col justify-between h-51">
         <p className="text-sm text-gray-500">{product.brand}</p>
         <div className="flex justify-between items-center mt-2">
           <span className="text-sm text-gray-400 line-through">&#8377; {`${product.price.toFixed(2)}`}</span>
