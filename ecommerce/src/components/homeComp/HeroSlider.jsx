@@ -24,16 +24,13 @@ const HeroSlider = () => {
         effect="slide"  // Enable fade effect
         className="heroSlider h-[250px]"
       >
-        {sliderData.map(({ id, title, bg, category }) => (
+        {sliderData.map(({ id, bg, bg2, category }) => (
           <SwiperSlide className="h-full relative flex justify-center items-center" key={id}>
-            <div className="z-20 text-white text-center" >
-              <h1 className="font-primary text-[32px] uppercase tracking-[2px] max-w-[920px] lg:text-[68px] text-white leading-tight mb-6">
-                {title}
-              </h1>
-            </div>
-
-            <div className="absolute top-0 w-full h-full"onClick={()=>navigate('/searchPage',{state:{category}})}>
+            <div className="hidden md:block absolute top-0 w-full h-full"onClick={()=>navigate('/searchPage',{state:{category}})}>
               <img className="object-cover h-full w-full" src={bg} alt="background" />
+            </div>
+            <div className="block md:hidden absolute top-0 w-full h-full"onClick={()=>navigate('/searchPage',{state:{category}})}>
+              <img className="object-cover h-full w-full" src={bg2} alt="background" />
             </div>
           </SwiperSlide>
         ))}
