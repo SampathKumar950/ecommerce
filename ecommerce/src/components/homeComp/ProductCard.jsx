@@ -17,7 +17,7 @@ const ProductCard = ({ product, likedProducts, handleLikeToggle }) => {
         <FontAwesomeIcon icon={faHeart} />
       </span>
 
-      <div className="flex justify-center items-center h-[350px]"
+      <div className="flex justify-center items-center h-[200px] lg:h-[350px]"
       onClick = {()=>{navigate('/productPage',{state:{pid:product._id}})}}>
         <img
           src={product.images[0]}
@@ -26,7 +26,7 @@ const ProductCard = ({ product, likedProducts, handleLikeToggle }) => {
         />
       </div>
       <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold">{product.name.substring(0,18)}{product.name.length>=18?'...':''}</h3>
+          <h3 className="text-lg font-semibold">{product.name.substring(0,12)}{product.name.length>=18?'...':''}</h3>
           <h2 className="bg-green-700 text-white p-1 text-sm rounded-md">
             {product.rating} <FontAwesomeIcon icon={faStar} style={{ color: 'white' }} />
           </h2>
