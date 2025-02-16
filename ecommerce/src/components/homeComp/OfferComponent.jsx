@@ -23,7 +23,7 @@ const OfferComponent = () => {
           prevEl: ".swiper-button-prev-2", // Connecting Swiper to custom "prev" button
         }}
         breakpoints={{
-          240: {slidesPerView:3},
+          240: {slidesPerView:2},
           640: { slidesPerView: 4 }, // 1 slide per view on small screens (e.g., mobile)
           768: { slidesPerView: 5 }, // 2 slides per view on medium screens (e.g., tablet)
           1024: { slidesPerView: 5 }, // 4 slides per view on larger screens (e.g., desktop)
