@@ -15,26 +15,29 @@ export const sliderData = [
         id: 1,
         // title: 'Go mad for this CHRISTMAS!',
         bg:'https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/272970cd025f101d.jpeg?q=20',
-        
+        bg2:'https://www.thestatesman.com/wp-content/uploads/2021/06/asus-s17.jpg',
         category:'laptop',
     },
     {
         id: 2,
         // title: 'UPTO 90% OFF on Electronics',
         bg : 'https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/9b64a9103ce681b8.jpg?q=20',
+        bg2:'https://cdn.nishtyainfotech.com/content/stories/thumb/67a5e9be86f7b.png',
         category:'vivot3x5g',
     },
     {
         id: 3,
         // title: 'GRAB THE BEST DEALS NOW!',
         bg:'https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/b0b5b6d2e4fcbe1b.jpg?q=20',
+        bg2:'https://m.media-amazon.com/images/G/31/img24/intel/JAN/Amazon_JanBAU_Gaming2_1400x800._SX1242_QL85_.jpg',
         category:'laptop',
     },
     {
         id: 4,
         // title: 'UPTO 90% OFF on Electronics',
         bg:'https://rukminim2.flixcart.com/fk-p-flap/1620/270/image/54f94d29aa080c9c.jpg?q=20',
-        category:'electronics',
+        bg2:'https://images.indianexpress.com/2024/05/lg-ai-smart-tv.jpg',
+        category:'tv',
     },
 ]
 
