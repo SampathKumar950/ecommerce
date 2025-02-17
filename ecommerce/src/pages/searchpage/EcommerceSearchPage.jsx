@@ -280,12 +280,12 @@ const ProductCard = ({ product, token, likedProducts, setLikedProducts, addedToC
       return;
     }
     if (likedProducts.includes(id)) {
+       setLikedProducts(likedProducts.filter((productId) => productId !== id));
       await Api.delete(`/api/users/wishlist?productId=${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setLikedProducts(likedProducts.filter((productId) => productId !== id));
     } else {
       setLikedProducts([...likedProducts, id]);
       await Api.post('/api/users/wishlist', { productId: id }, {
@@ -304,12 +304,13 @@ const ProductCard = ({ product, token, likedProducts, setLikedProducts, addedToC
       return;
     }
     try {
+      setAddedToCart([...addedToCart, productId]);
       await Api.post('/api/users/cart', { productId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAddedToCart([...addedToCart, productId]); // Mark as added to cart
+      // Mark as added to cart
     } catch (error) {
       console.error('Error adding product to cart', error);
     }
