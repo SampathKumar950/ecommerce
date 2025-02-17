@@ -81,7 +81,7 @@ const Wishlist = () => {
         {wishlist.length === 0 ? (
           <div className="flex justify-center items-center flex-col mt-20">
             <span className="text-8xl">😞</span>
-            <p className="text-4xl mt-12">No products in wishlist</p>
+            <p className="text-xl md:text-4xl mt-12">No products in wishlist</p>
           </div>
         ) : (
           <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-6">
