@@ -92,7 +92,7 @@ const Navbar = ({isHomePage}) => {
         {logout &&
          (<div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50" >
           <div className="bg-white p-6 rounded-lg shadow-lg w-1/2 max-w-lg">
-            <h3 className="text-xl mb-4">Do You Want To Logout From Ushop ? </h3>
+            <h3 className="text-md md:text-xl mb-4">Do You Want To Logout From Ushop ? </h3>
             <div className ="">
                 <button className="bg-gray-800 text-white rounded-lg p-2 mr-5" onClick={()=>{setRegister(0); localStorage.removeItem('authtoken'); setLogout(false); navigate('/'); return;}}>
                     yes
