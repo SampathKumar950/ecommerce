@@ -150,13 +150,13 @@ const ProductPage = () => {
                   // style={{ width: '600px', height: '490px' }}
                 />
               </div>
-              <div className="flex justify-center align-center w-[300px] space-x-2  mr-2">
+              <div className="flex justify-center align-center w-[300px] mr-1">
                 {product && product.images && product.images.length > 0 && product.images.map((image, index) => (
                   <img
                     key={index}
                     src={image}
                     alt={`Product ${index + 1}`}
-                    className="w-full h-[95px] object-contain cursor-pointer rounded-lg border border-gray-300"
+                    className="w-full h-[80px] object-contain cursor-pointer rounded-lg border border-gray-300"
                     onClick={() => handleImageClick(image)}
                   />
                 ))}
