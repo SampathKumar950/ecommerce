@@ -122,7 +122,7 @@ const Orders = () => {
     return (
       <div className="flex flex-col items-center justify-center h-screen m-0">
         <h2 className="text-4xl font-semibold text-gray-700 mb-4">You Have no Orders</h2>
-        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={()=>navigate('/')}>
+        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={()=>navigate('/home')}>
           Shop Now
         </button>
       </div>
@@ -139,11 +139,11 @@ const Orders = () => {
         <>
         <div className="p-8 bg-gray-100">
           {/* Search Bar and Button in the Same Row as "Your Orders" */}
-          <div className="flex items-center justify-between mb-6 mt-20">
-            <h1 className="text-3xl font-semibold">Your Orders</h1>
+          <div className="block md:flex  items-center justify-between mb-6 mt-20">
+            <h1 className="mb-[25px] md:mb-[0px] text-3xl font-semibold">Your Orders</h1>
             
             {/* Search Section (Centered) */}
-            <div className="flex-1 flex justify-center ">
+            <div className="flex-1 flex ml-[25px] md:ml-[0px] justify-center ">
               <input
                 type="text"
                 placeholder="Search for orders..."
@@ -166,18 +166,18 @@ const Orders = () => {
           <div>
             {filteredOrders.map(order => (
               <div key={order._id} className="bg-white shadow-md rounded-lg p-6 mb-6">
-                <div className="flex items-center space-x-6">
+                <div className="block md:flex items-center space-x-6">
                   {/* Product Image */}
-                  <div className="flex-shrink-0"  onClick = {()=>{navigate('/productPage',{state:{pid:order.product}})}}>
+                  <div className="flex justify-center"  onClick = {()=>{navigate('/productPage',{state:{pid:order.product}})}}>
                     <img src={order.productImage} alt={"alternative"} className="w-32 h-32 object-bit rounded" />
                   </div>
 
                   <div className="flex-1">
                     {/* Product Name and Show More Details */}
-                    <div className="flex justify-between items-center">
-                      <h2 className="text-2xl font-medium">{order.productName}</h2>
+                    <div className="flex justify-between align-center">
+                      <h2 className="text-lg md:text-2xl font-medium w-1/2 truncate">{order.productName}</h2>
                       <div className="ml-6 text-blue-600 cursor-pointer hover:underline" onClick={()=>navigate('/orderPage',{state:{orderId:order._id}})}>
-                        <span>&gt;</span> Show More Details
+                        <span>&gt;</span> Show More
                       </div>
                     </div>
 
