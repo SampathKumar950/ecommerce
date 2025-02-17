@@ -51,12 +51,12 @@ const Wishlist = () => {
 
   const handleAddToCart = async (productId) => {
     try {
+      setAddedToCart(prev => [...prev, productId]);
       await Api.post('/api/users/cart', { productId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAddedToCart(prev => [...prev, productId]);
     } catch (error) {
       console.error('Error adding product to cart', error);
     }
