@@ -8,6 +8,18 @@ import { handlePayment } from '../../trails/handlePayment';
 import Api from '../../assets/Api';
 
 const CartPage = () => {
+  const [custDetails, setCustDetails] = useState({
+      name: '',
+      phone: '',
+      address: '',
+    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCustDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
   const [cartItems, setCartItems] = useState([]);
   const token = localStorage.getItem('authtoken');
   useEffect(() => {
@@ -25,7 +37,7 @@ const CartPage = () => {
           Authorization:`Bearer ${token}`,
         }
       })
-      navigate('/');
+      navigate('/home');
     }catch(error){
       console.log(error.message);
     }
@@ -106,7 +118,15 @@ const CartPage = () => {
   const calculateFinalAmount = () => {
     return calculateTotalPrice() - calculateDiscount();
   };
-
+  const [error,setError] = useState('');
+  const handleCheckOut = ()=>{
+    if(cartItems.length===0){return;}
+    if(custDetails.name.length===0||custDetails.address.length===0||custDetails.phone.length===0){
+      setError('Please enter All the required fields');
+      return;
+    }
+  handlePayment(calculateFinalAmount().toFixed(2),handleSuccess);
+   }
   return (
     <>
       {/* Navbar fixed at the top */}
@@ -132,12 +152,14 @@ const CartPage = () => {
           ) : (
             <div>
               {cartItems.map((item) => (
-                <div key={item._id} className="flex items-center justify-between py-6 border-b">
+                <div key={item._id} className="block md:flex items-center justify-between py-6 border-b">
                   <div className="flex items-center space-x-6">
+                    <div className='flex justify-center'>
                     <img src={item.images[0]} alt={item.name} className="w-30 h-24 object-fit rounded" />
+                    </div>
                     <div>
-                      <p className="font-medium text-xl">{item.name} <span className='text-white text-sm bg-green-900 p-1 rounded-lg ml-2'>{item.rating.toFixed(1)}<FontAwesomeIcon icon={faStar} /></span></p>
-                      <p className="text-lg text-gray-600">&#8377; {item.price.toFixed(2)} each</p>
+                      <p className="font-medium text-md  lg:text-xl">{item.name.substring(0,20)}{item.name.length>=20?'..':''} <span className='text-white text-sm bg-green-900 p-1 rounded-lg ml-2'>{item.rating.toFixed(1)}<FontAwesomeIcon icon={faStar} /></span></p>
+                      <p className="text-md lg:text-lg text-gray-600">&#8377; {item.price.toFixed(2)} each</p>
                       <p className="text-md text-green-400">Available : {item.stockQuantity}</p>
                     </div>
                   </div>
@@ -175,10 +197,10 @@ const CartPage = () => {
             {/* Loop through cart items and display individual item pricing */}
             {cartItems.map((item) => (
               <div key={item._id} className="flex justify-between">
-                <p className="text-lg">{item.name} (x{item.quantity})</p>
+                <p className="text-md">{item.name.substring(0,11)}{ item.name.length>=11?'...':''} (x{item.quantity})</p>
                 <div>
-                  <p className="text-lg">&#8377;{item.price.toFixed(2)} x {item.quantity} = &#8377;{(item.price * item.quantity).toFixed(2)}</p>
-                  <p className="text-lg text-green-500">
+                  <p className="text-md">&#8377;{item.price.toFixed(2)} x {item.quantity} = &#8377;{(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="text-md text-green-500">
                     {`${(item.discount).toFixed(0)}% Discount`} - &#8377;{(item.price * item.quantity * (item.discount / 100)).toFixed(2)}
                   </p>
                 </div>
@@ -203,11 +225,48 @@ const CartPage = () => {
               <p className="text-lg font-semibold">&#8377;{calculateFinalAmount().toFixed(2)}</p>
             </div>
 
+            <div>
+            <label className="block text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              value={custDetails.name}
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          {/* Phone Number */}
+          <div>
+            <label className="block text-gray-700">Phone Number</label>
+            <input
+              type="tel"
+              name="phone"
+              value={custDetails.phone}
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          {/* Business Address */}
+          <div>
+            <label className="block text-gray-700">Delivery Address</label>
+            <textarea
+              name="address"
+              value={custDetails.address}
+              onChange={handleChange}
+              className="w-full p-3 border border-gray-300 rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows="4"
+             required
+            />
+          </div>
             {/* Checkout Button */}
-            <button className="w-full bg-blue-500 text-white py-3 rounded-lg mt-6 hover:bg-blue-600" onClick={()=>{if(cartItems.length===0){return;}
-            handlePayment(calculateFinalAmount().toFixed(2),handleSuccess)}}>
+            <button className="w-full bg-blue-500 text-white py-3 rounded-lg mt-6 hover:bg-blue-600" onClick={handleCheckOut}>
               Proceed to Checkout
             </button>
+            <p className='text-red-500 text-md'>{error}</p>
           </div>
         </div>
       </div>}</>
