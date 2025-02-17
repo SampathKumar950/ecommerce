@@ -92,12 +92,12 @@ const ProductPage = () => {
     <>
       <div className="mx-auto relative p-4 h-screen lg:overflow-hidden">
         <Navbar />
-        <div className="lg:flex justify-center align-center gap-8" style={{ marginTop: '60px' }}>
+        {product?<div className="lg:flex justify-center align-center gap-8" style={{ marginTop: '60px' }}>
           {/* Left Section: Image Gallery */}
-          <div className="flex flex-col items-start space-y-4">
-            <div className="flex " style={{width:'500px'}}>
+          <div className="hidden md:flex flex-col items-start space-y-4">
+            <div className="flex lg:w-[500px]">
               <div className="flex flex-col space-y-4 w-32 mr-2 mt-4 mb-4">
-                {product.images && product.images.length > 0 && product.images.map((image, index) => (
+                {product && product.images && product.images.length > 0 && product.images.map((image, index) => (
                   <img
                     key={index}
                     src={image}
@@ -133,6 +133,43 @@ const ProductPage = () => {
             </div>
           </div>
 
+          <div className="block md:hidden items-center space-y-4">
+            <div className="block">
+              {/* Large Image Display */}
+              <div className="flex align-center justify-center rounded-lg overflow-hidden relative">
+                <span
+                  className={`absolute top-4 right-2 text-xl cursor-pointer ${isLiked ? 'text-red-500' : 'text-gray-200'}`}
+                  onClick={() => handleLikeToggle(product)} // Pass the entire product object
+                >
+                <FontAwesomeIcon icon={faHeart} />
+                </span>
+                <img
+                  src={selectedImage}
+                  alt="Selected Product"
+                  className="w-[290px] h-[460px] md:w-[600px] md:h-[480px] object-contain"
+                  // style={{ width: '600px', height: '490px' }}
+                />
+              </div>
+              <div className="flex justify-center align-center  mr-2">
+                {product && product.images && product.images.length > 0 && product.images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Product ${index + 1}`}
+                    className="w-full h-[95px] object-contain cursor-pointer rounded-lg border border-gray-300"
+                    onClick={() => handleImageClick(image)}
+                  />
+                ))}
+              </div>
+               {/* Add to Cart Button */}
+               <button
+                  className={`my-4 py-2 w-full bg-blue-500 text-white rounded-lg transition ${addedToCart?'bg-indigo-600':'bg-blue-500'}`}
+                  onClick={()=>handleAddToCart(product._id)}
+                >
+                  {addedToCart? 'Added to Cart':'Add to Cart'}
+                </button>
+            </div>
+          </div>
           {/* Right Section: Product Details, Description, Features, Reviews, Q&A */}
           <div className="w-full lg:overflow-y-scroll h-screen">
             {/* Product Title */}
@@ -147,7 +184,7 @@ const ProductPage = () => {
               <span className="text-2xl font-semibold text-gray-900">
               &#8377;{(product.price-(product.price*(product.discount/100)) || 0).toFixed(2)}
               </span>
-              {product.price && (
+              {product && product.price && (
                 <span className="ml-4 text-md line-through text-gray-500">
                   &#8377;{(product.price || 0).toFixed(2)}
                 </span>
@@ -165,7 +202,7 @@ const ProductPage = () => {
             <div className="mt-6">
               <h3 className="text-2xl font-semibold">Product Features</h3>
               <ul className="list-disc pl-5 mt-4 text-gray-700">
-                {product.features && product.features.length > 0 ? (
+                {product && product.features && product.features.length > 0 ? (
                   product.features.map((feature, idx) => (
                     <li key={idx}>{feature}</li>
                   ))
@@ -178,7 +215,7 @@ const ProductPage = () => {
             {/* Customer Reviews */}
             <div className="mt-6">
               <h3 className="text-2xl font-semibold">Customer Reviews</h3>
-              {product.reviews && product.reviews.length > 0 ? (
+              {product && product.reviews && product.reviews.length > 0 ? (
                <Review product={product}/>
               ) : (
                 <p>No reviews yet.</p>
@@ -188,7 +225,7 @@ const ProductPage = () => {
             {/* Q&A Section */}
             <div className="mt-6">
               <h3 className="text-2xl font-semibold">Q&A</h3>
-              {product.qA && product.qA.length > 0 ? (
+              { product && product.qA && product.qA.length > 0 ? (
                 product.qA.map((qa, idx) => (
                   <div key={idx} className="mt-4">
                     <p className="font-semibold text-gray-800">Q: {qa.question}</p>
@@ -219,7 +256,11 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
+        </div>:
+        <div className='flex align-center justify-center'>
+          Loading Product...
         </div>
+        }
       </div>
     </>
   );
