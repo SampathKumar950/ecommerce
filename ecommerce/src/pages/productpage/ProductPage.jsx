@@ -150,7 +150,7 @@ const ProductPage = () => {
                   // style={{ width: '600px', height: '490px' }}
                 />
               </div>
-              <div className="flex justify-center align-center  mr-2">
+              <div className="flex justify-center align-center w-[400px] space-x-2  mr-2">
                 {product && product.images && product.images.length > 0 && product.images.map((image, index) => (
                   <img
                     key={index}
