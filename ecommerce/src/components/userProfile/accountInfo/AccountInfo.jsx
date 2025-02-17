@@ -4,13 +4,13 @@ import Api from '../../../assets/Api';
 
 const AccountInfo = ({ token }) => {
   const [profile, setProfile] = useState({
-    email: 'user@example.com', // Email is fixed, no need for a setter
-    phone: '123-456-7890',
-    address: '123 Main St, Springfield, IL, 62701',
+    email: '', // Email is fixed, no need for a setter
+    phone: '',
+    address: '',
     oldPassword: '',
-    password: '********',
+    password: '',
     newPassword: '',
-    username: 'username',
+    username: '',
     message: '',
     otp: '',
     showOtpInput: false,
