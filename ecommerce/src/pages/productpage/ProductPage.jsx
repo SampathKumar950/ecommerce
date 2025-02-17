@@ -68,12 +68,12 @@ const ProductPage = () => {
       navigate('/login');
     }
     try {
+      setAddedToCart(true);
       await Api.post('/api/users/cart', { productId }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAddedToCart(true);
     } catch (error) {
       console.error('Error adding product to cart', error);
     }
