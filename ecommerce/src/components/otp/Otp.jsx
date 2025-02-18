@@ -27,8 +27,16 @@ function Otp() {
   const handleSubmit = async () => {
     const otpSubmitted = otp.join("");
     if (otpSubmitted === otpCode) {
-      await Api.post('/api/users/register', location.state.values);
-      setRegister(1);
+        const data =  await Api.post('/api/users/register', location.state.values);
+        const {token} = data.data;
+        localStorage.setItem('authtoken',token);
+
+          if(data.data.role==='admin')
+           setRegister(3);
+          else if(data.data.role==='vendor')
+           setRegister(2);
+          else
+           setRegister(1);
       localStorage.setItem("otpVerified", "true"); // Store OTP verification status
       navigate("/");
     } else {
