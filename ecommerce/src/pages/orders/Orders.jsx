@@ -122,7 +122,7 @@ const Orders = () => {
     return (
       <div className="flex flex-col items-center justify-center h-screen m-0">
         <h2 className="text-4xl font-semibold text-gray-700 mb-4">You Have no Orders</h2>
-        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={()=>navigate('/home')}>
+        <button className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={()=>navigate('/')}>
           Shop Now
         </button>
       </div>
