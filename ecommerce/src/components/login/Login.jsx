@@ -88,7 +88,7 @@ function Login() {
           </button>
           <div className="flex flex-col align-center justify-center">
           <GoogleOAuth formErrors={formErrors} setFormErrors={setFormErrors}/>
-          <FacebookLoginComponent />;
+          <FacebookLoginComponent />
           </div>
         </div>
         <div className="text-center">
