@@ -26,8 +26,8 @@ const ProductCard = ({ product, likedProducts, handleLikeToggle }) => {
         />
       </div>
       <div className="flex justify-between items-center">
-          <h3 className="truncate w-3/4 text-lg font-semibold">{product.name}</h3>
-          <h2 className="bg-green-700 text-white p-1 text-sm rounded-md">
+          <h3 className="truncate w-3/4 text-md md:text-lg font-semibold">{product.name}</h3>
+          <h2 className="bg-green-700 text-white p-[2px] text-xs md:text-sm rounded-md">
             {product.rating} <FontAwesomeIcon icon={faStar} style={{ color: 'white' }} />
           </h2>
         </div>
