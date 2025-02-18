@@ -105,9 +105,10 @@ function Otp() {
   };
 
   const handleBackToRegister = () => {
-    navigate("/register");
+    clearInterval(timerId);
     localStorage.removeItem("timer"); // Remove timer when it expires
-    localStorage.removeItem("otpSent");
+    localStorage.removeItem("otpSent"); // Reset OTP sent flag
+    navigate("/register");
   };
 
   return (
