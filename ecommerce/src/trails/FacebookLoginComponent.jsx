@@ -68,9 +68,9 @@ const FacebookLoginComponent = ({register,setRegister}) => {
 
   return (
     <div>
-      <button className="w-full h-[40px] border border-gray-300 rounded-lg  text-md text-gray-700 my-2 flex  items-center space-x-32 hover:bg-gray-100">
-            <FontAwesomeIcon icon={faFacebook} className="ml-3"   style={{ color: "#74C0FC",fontSize:'20px' }} /> 
-            <span >Sign In with Facebook</span>
+      <button className="w-full h-[40px] border border-gray-300 rounded-lg  text-md text-gray-700 my-2 text-center hover:bg-gray-100">
+        <FontAwesomeIcon icon={faFacebook} className="ml-3"   style={{ color: "#74C0FC",fontSize:'20px' }} /> 
+        <span >Sign In with Facebook</span>
       </button>
     </div>
   );
