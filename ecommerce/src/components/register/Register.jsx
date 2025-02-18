@@ -104,8 +104,12 @@ function Register() {
                     >
                         Register
                     </button>
-                    <GoogleOAuth formErrors = {formErrors} setFormErrors={setFormErrors}/>
-                    <FacebookLoginComponent register={register} setRegister={setRegister}/>
+                     <div className="flex flex-col align-center justify-center">
+                      <div className='flex justify-center align-center'>
+                      <GoogleOAuth formErrors={formErrors} setFormErrors={setFormErrors}/>
+                      </div>
+                      <FacebookLoginComponent />
+                      </div>
                 </div>
                 <div className="text-center">
                     <Link to="/login" className="text-blue-900 mb-2 text-sm hover:underline">Already have an Account? Log In</Link>
