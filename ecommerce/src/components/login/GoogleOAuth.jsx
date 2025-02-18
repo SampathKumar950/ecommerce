@@ -38,7 +38,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
   };
 
   return (
-    <div className='flex justify-center align-center'>
+    <div className='w-full flex justify-center align-center'>
       <GoogleLogin
         onSuccess={handleLogin}
         onError={() => console.log('Login Failed')}
