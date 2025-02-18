@@ -5,8 +5,10 @@ const orderSchema = new mongoose.Schema({
   quantity: { type: Number, required: true },
   totalAmount: { type: Number, required: true },
   paymentStatus: { type: String, enum: ['pending', 'paid', 'failed'], default: 'pending' },
+  name:{type: String },
+  phone:{type: Number},
   shippingAddress: {
-    type: String ,  default:'hyderabad'
+    type: String ,
   },
   productImage:{type:String},
   deliveryDate:{type:String, default:'10/02/2025'},
