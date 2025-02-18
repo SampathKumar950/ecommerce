@@ -46,7 +46,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
         render={(props) => (
           <button
             {...props}
-            className="w-full h-12 border border-black rounded-3xl mb-3 flex justify-center text-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full h-12 border border-black rounded-3xl mb-3 flex justify-center items-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             style={{ cursor: 'pointer' }}
           >
             {/* Google Icon */}
