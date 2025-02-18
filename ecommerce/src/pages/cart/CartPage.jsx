@@ -31,13 +31,16 @@ const CartPage = () => {
     try{
       const res = await Api.post('/api/users/createOrder',{
         tid: tid,
-        cartItems
+        cartItems,
+        name: custDetails.name,
+        shippingAddress: custDetails.address,
+        phone: custDetails.phone,
       },{
         headers:{
           Authorization:`Bearer ${token}`,
         }
       })
-      navigate('/');
+      navigate('/home');
     }catch(error){
       console.log(error.message);
     }
@@ -59,7 +62,12 @@ const CartPage = () => {
         ...item,
         quantity: 1,  // Set initial quantity to 1
       }));
-
+      setCustDetails((prevDetails) => ({
+        ...prevDetails,
+        name : response.data.name||'',
+        phone : response.data.phone||'',
+        address: response.data.address||'',
+      }));
       setCartItems(updatedCartItems); // Update state with the cart data
 
       console.log('Cart data fetched:', updatedCartItems);
@@ -210,7 +218,7 @@ const CartPage = () => {
             {/* Subtotal */}
             <div className="flex justify-between">
               <p className="text-lg font-semibold">Subtotal</p>
-              <p className="text-lg">${calculateTotalPrice().toFixed(2)}</p>
+              <p className="text-lg">&#8377;{calculateTotalPrice().toFixed(2)}</p>
             </div>
 
             {/* Discount */}
