@@ -87,7 +87,9 @@ function Login() {
             Submit
           </button>
           <div className="flex flex-col align-center justify-center">
+          <div className='flex justify-center align-center'>
           <GoogleOAuth formErrors={formErrors} setFormErrors={setFormErrors}/>
+          </div>
           <FacebookLoginComponent />
           </div>
         </div>
