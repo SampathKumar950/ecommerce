@@ -106,6 +106,8 @@ function Otp() {
 
   const handleBackToRegister = () => {
     navigate("/register");
+    localStorage.removeItem("timer"); // Remove timer when it expires
+    localStorage.removeItem("otpSent");
   };
 
   return (
