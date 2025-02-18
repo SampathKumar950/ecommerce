@@ -425,7 +425,7 @@ router.get("/cart",verifyToken,async(req,res)=> {
         if(!user){
             return res.status(404).json({message: "User not Found"});
         }
-        res.status(200).json({cart: user.cart});
+        res.status(200).json({cart: user.cart,phone:user.phone,address:user.address,name:user.username});
     }catch(error){
         res.json({message: "error at get cart"});
     }
@@ -554,7 +554,7 @@ router.delete("/review",verifyToken,async(req,res)=>{
 });
 
 router.post('/createOrder', verifyToken, async (req, res) => {
-  const { tid, cartItems } = req.body;
+  const { tid, cartItems,phone,shippingAddress,name } = req.body;
   const orderIds = [];  // This will hold the created order IDs
   
   try {
@@ -575,6 +575,9 @@ router.post('/createOrder', verifyToken, async (req, res) => {
         user: req.userId,  // Use the user ID from the JWT token
         productName: item.name,
         productImage:item.images[0],
+        name,
+        shippingAddress,
+        phone,
       });
       
       // Save the order to the database
