@@ -127,6 +127,9 @@ const OrderDetailPage = () => {
                   <p><strong>Order ID:</strong> {order._id}</p>
                   <p><strong>Order Date:</strong> {order.createdAt}</p>
                   <p><strong>Order Status:</strong> {order.orderStatus}</p>
+                  <p><strong>customer :</strong> {order.name}</p>
+                  <p><strong>phone :</strong> {order.phone}</p>
+                  <p><strong>delivery address :</strong> {order.shippingAddress}</p>
                 </div>
               </div>
 
