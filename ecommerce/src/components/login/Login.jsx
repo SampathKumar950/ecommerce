@@ -7,6 +7,7 @@ import Navbar from "../navbar/Navbar";
 import { RegisterContext } from "../../App";
 import GoogleOAuth from "./GoogleOAuth";
 import Api from "../../assets/Api";
+import FacebookLoginComponent from "../../trails/FacebookLoginComponent";
 
 function Login() {
 
@@ -87,10 +88,7 @@ function Login() {
           </button>
           <div className="flex flex-col align-center justify-center">
           <GoogleOAuth formErrors={formErrors} setFormErrors={setFormErrors}/>
-          <button className="w-full h-[40px] border border-gray-300 rounded-lg  text-md text-gray-700 my-2 text-center hover:bg-gray-100">
-            <FontAwesomeIcon icon={faFacebook} className="ml-3"   style={{ color: "#74C0FC",fontSize:'20px' }} /> 
-            <span >Sign In with Facebook</span>
-          </button>
+          <FacebookLoginComponent />;
           </div>
         </div>
         <div className="text-center">
