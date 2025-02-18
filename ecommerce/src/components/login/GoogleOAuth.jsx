@@ -38,6 +38,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
   };
 
   return (
+    <div className='flex justify-center align-center'>
       <GoogleLogin
         onSuccess={handleLogin}
         onError={() => console.log('Login Failed')}
@@ -45,7 +46,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
         render={(props) => (
           <button
             {...props}
-            className="w-full h-12 border border-black rounded-3xl mb-3 flex justify-center items-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-[4px] h-12 border border-black rounded-3xl mb-3 flex justify-center items-center space-x-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
             style={{ cursor: 'pointer' }}
           >
             {/* Google Icon */}
@@ -55,6 +56,7 @@ const GoogleOAuth = ({formErrors,setFormErrors}) => {
           </button>
         )}
       />
+      </div>
   );
 };
 
