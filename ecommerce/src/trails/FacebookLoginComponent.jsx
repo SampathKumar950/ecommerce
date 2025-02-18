@@ -67,8 +67,8 @@ const FacebookLoginComponent = ({register,setRegister}) => {
   };
 
   return (
-    <div className='flex justify-center align-center'>
-      <button className="space-x-2 h-[40px] border border-gray-300 rounded-lg  text-md text-gray-700 my-2 text-center hover:bg-gray-100"
+     <div className='flex justify-center align-center'>
+      <button className="px-[5px] space-x-2 h-[40px] border border-gray-300 rounded-lg  text-md text-gray-700 my-2 text-center hover:bg-gray-100"
       onClick={handleFacebookLogin}>
         <FontAwesomeIcon icon={faFacebook} className="ml-3"   style={{ color: "#74C0FC",fontSize:'20px' }} /> 
         <span >Sign In with Facebook</span>
@@ -78,3 +78,4 @@ const FacebookLoginComponent = ({register,setRegister}) => {
 };
 
 export default FacebookLoginComponent;
+
