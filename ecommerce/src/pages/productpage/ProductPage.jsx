@@ -62,6 +62,9 @@ const ProductPage = () => {
       });
     }
   };
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[]);
   const [addedToCart, setAddedToCart] = useState(false);
   const handleAddToCart = async (productId) => {
     if(!token){
