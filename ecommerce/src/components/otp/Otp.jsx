@@ -37,7 +37,8 @@ function Otp() {
            setRegister(2);
           else
            setRegister(1);
-      localStorage.setItem("otpVerified", "true"); // Store OTP verification status
+      localStorage.removeItem("timer"); // Remove timer when it expires
+      localStorage.removeItem("otpSent");
       navigate("/");
     } else {
       alert("You entered the wrong OTP.");
@@ -45,15 +46,15 @@ function Otp() {
     }
   };
 
-  // Check OTP status on page load to prevent reloading OTP page
-  useEffect(() => {
-    const otpVerified = localStorage.getItem("otpVerified");
-    if (otpVerified === "true") {
-      navigate("/"); // Redirect to home page if OTP is already verified
-    } else {
-      sendOtp(); // Send OTP only if it's not already verified
-    }
-  }, [navigate]);
+  // // Check OTP status on page load to prevent reloading OTP page
+  // useEffect(() => {
+  //   const otpVerified = localStorage.getItem("otpVerified");
+  //   if (otpVerified === "true") {
+  //     navigate("/"); // Redirect to home page if OTP is already verified
+  //   } else {
+  //     sendOtp(); // Send OTP only if it's not already verified
+  //   }
+  // }, [navigate]);
 
   const sendOtp = async () => {
     // Check if OTP has already been sent
