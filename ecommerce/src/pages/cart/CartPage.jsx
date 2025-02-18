@@ -40,7 +40,7 @@ const CartPage = () => {
           Authorization:`Bearer ${token}`,
         }
       })
-      navigate('/home');
+      navigate('/');
     }catch(error){
       console.log(error.message);
     }
